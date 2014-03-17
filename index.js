@@ -9,7 +9,8 @@ var chalk = require('chalk');
 
 module.exports = function worklog(argv) {
   var message;
-  var fileName = argv._[0] + '.txt';
+  var today = moment().format('YYYY-MM-DD');
+  var fileName = argv._[0] ? argv._[0] + '.txt' : today + '.txt';
   var fullPath = path.join(dir, fileName);
   var time = argv.t ? argv.t : moment().format('HH:mm:ss');
   var data = time + ' - ' + argv.m;

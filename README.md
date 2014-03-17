@@ -14,7 +14,7 @@ Install the module with: `npm install -g worklog`
 And use it like this:
 
 ```sh
-worklog 2014-03-17 -m 'What I did today'
+worklog -m 'What I did today'
 ```
 If the file already exists the message is appended.
 The messages are logged to the file `~/Dropbox/worklog/2014-03-17.txt` with
@@ -30,7 +30,7 @@ If you want to set the timestamp manually with an argument you can use the
 `-t`-flag:
 
 ```sh
-worklog 2014-03-17 -m 'What I did today' -t '12:00:00'
+worklog -m 'What I did today' -t '12:00:00'
 ```
 
 ## Contributing
