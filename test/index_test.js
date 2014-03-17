@@ -1,5 +1,7 @@
 'use strict';
 
+var grunt = require('grunt');
+/* jshint unused: false */
 var worklog = require('../index.js');
 
 /*
@@ -27,10 +29,33 @@ exports.worklog = {
     // setup here
     done();
   },
-  'no args': function(test) {
+  logwork: function(test) {
+    var actual, expected;
+    var generatedFile = '/Users/kahlil/Dropbox/worklog/test.txt';
+
     test.expect(1);
-    // tests here
-    test.equal(worklog.awesome(), 'awesome', 'should be awesome.');
-    test.done();
+
+    grunt.util.spawn({
+      cmd: 'worklog',
+      args: [
+        'test',
+        '-m',
+        'some work',
+        '-t',
+        '14:00:00'
+      ]
+    },
+    function() {
+      // Read the generated file.
+      actual = grunt.file.read(generatedFile);
+      // Read the reference file.
+      expected = grunt.file.read('test/expected/test.txt');
+      // Test if the two files have the same content.
+      test.equal(actual, expected, 'should generate the correct file.');
+      // Delete the generated file.
+      grunt.file.delete(generatedFile, { force: true });
+
+      test.done();
+    });
   }
 };

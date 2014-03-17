@@ -33,7 +33,7 @@
   },
   "preferGlobal": "true",
   "bin": {
-    "worklog": "index.js"
+    "worklog": "cli.js"
   },
   "dependencies": {
     "async": "^0.2.10",
