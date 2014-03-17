@@ -21,7 +21,7 @@ If the file already exists the message is appended.
 The messages are logged to the file `~/Dropbox/worklog/2014-03-17.txt` with
 a simple timestamp like this:
 
-```txt
+```text
 11:30:20: did some stuff
 14:30:31: totally did more stuffz
 16:31:03: hangin'
