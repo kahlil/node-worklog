@@ -37,6 +37,7 @@ worklog 2014-03-17 -m 'What I did today' -t '12:00:00'
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+v0.1.4: Added tests and did some light refactoring.
 v0.1.0: Initial release.
 
 ## License

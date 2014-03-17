@@ -4,11 +4,13 @@ var fs = require('fs');
 var moment = require('moment');
 var home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
 var dir = path.join(home, 'Dropbox', 'worklog');
+var chalk = require('chalk');
 
 
 module.exports = function worklog(argv) {
-
-  var file = path.join(dir, argv._[0] + '.txt');
+  var message;
+  var fileName = argv._[0] + '.txt';
+  var fullPath = path.join(dir, fileName);
   var time = argv.t ? argv.t : moment().format('HH:mm:ss');
   var data = time + ' - ' + argv.m;
 
@@ -19,7 +21,7 @@ module.exports = function worklog(argv) {
         if (!exists) {
           fs.mkdir(dir, function(err) {
             if (err) throw err;
-            console.info('Dir "' + dir + '" created...' );
+            console.info(chalk.green('Dir "' + dir + '" created...'));
           });
         }
 
@@ -29,9 +31,16 @@ module.exports = function worklog(argv) {
     },
     function(callback){
 
-      fs.appendFile(file, data + '\n', function (err) {
+      fs.appendFile(fullPath, data + '\n', function (err) {
         if (err) throw err;
-        console.info('The message "' + data + '" was appended to file ' + file + '!');
+
+        message = chalk.blue('The log message ') +
+          chalk.green('"' + data + '"') +
+          chalk.blue(' was appended to ' +
+          path.join('~','Dropbox', fileName + '!'));
+
+        console.info(message);
+
         callback(null, 'two');
       });
     }
