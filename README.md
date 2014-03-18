@@ -1,36 +1,32 @@
 # worklog
 
-Log work to files in `~/Dropbox/worklog`.
-The name of the file you are logging your work to is determined by the first
-argument you pass and the message you log is determined by the message
-you pass in the format of `-m <MESSAGE>`.
+A tiny Node program that lets you log work to files in `~/Dropbox/worklog` via the terminal.
 
-## TODO:
-* check for bad args
+```sh
+worklog [<custom filename>] -m <a message to be logged> [-t <a custom timestamp>]
+```
+
+Per default the filename of the file the message is logged to is the current date in the following format: `YYYY-MM-DD.txt`.  
+To use a custom filename pass the name as the first parameter.
+
+Per default the message logged is prefixed with a timestamp. If you want to customize the timestamp pass your timestamp of choice with the `-t` flag.
 
 ## Getting Started
 Install the module with: `npm install -g worklog`
 
-And use it like this:
+Mostly you would use it like this:
 
 ```sh
-worklog -m 'What I did today'
+worklog -m 'some stuff I did today'
 ```
+
 If the file already exists the message is appended.
-The messages are logged to the file `~/Dropbox/worklog/2014-03-17.txt` with
-a simple timestamp like this:
+The contents of a worklog file could look like this:
 
 ```text
-11:30:20: did some stuff
-14:30:31: totally did more stuffz
-16:31:03: hangin'
-```
-
-If you want to set the timestamp manually with an argument you can use the
-`-t`-flag:
-
-```sh
-worklog -m 'What I did today' -t '12:00:00'
+11:30:20 - did some stuff
+14:30:31 - totally did more stuffz
+16:31:03 - hangin'
 ```
 
 ## Contributing

@@ -1,8 +1,7 @@
 'use strict';
 
 var grunt = require('grunt');
-/* jshint unused: false */
-var worklog = require('../index.js');
+// var worklog = require('../index.js');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
