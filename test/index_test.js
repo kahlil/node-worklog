@@ -1,6 +1,7 @@
 'use strict';
 
 var grunt = require('grunt');
+var path = require('path');
 // var worklog = require('../index.js');
 
 /*
@@ -30,7 +31,8 @@ exports.worklog = {
   },
   logwork: function(test) {
     var actual, expected;
-    var generatedFile = '/Users/kahlil/Dropbox/worklog/test.txt';
+    var dir = path.join(process.env['HOME'], 'Dropbox', 'worklog');
+    var generatedFile = path.join(dir, 'test.txt');
 
     test.expect(1);
 
