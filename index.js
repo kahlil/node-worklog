@@ -5,7 +5,7 @@ var moment = require('moment');
 var home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
 var dir = path.join(home, 'Dropbox', 'worklog');
 var chalk = require('chalk');
-
+var linefeed = require('os').EOL;
 
 module.exports = function worklog(argv) {
   var today = moment().format('YYYY-MM-DD');
@@ -13,10 +13,10 @@ module.exports = function worklog(argv) {
   var fullPath = path.join(dir, fileName);
   var time = argv.t ? argv.t : moment().format('HH:mm:ss');
   var data = time + ' - ' + argv.m;
-  var message = chalk.blue('The log message ') +
-    chalk.green('"' + data + '"') +
-    chalk.blue(' was appended to ' +
-    path.join('~','Dropbox', fileName + '!'));
+  var message = chalk.blue('The work log message ') +
+    chalk.green('"' + data + '"') + linefeed +
+    chalk.blue('was appended to ') +
+    chalk.magenta(path.join('~','Dropbox', 'worklog', fileName));
 
   var checkDir = function(callback){
     fs.exists(dir, function (exists) {
@@ -33,7 +33,7 @@ module.exports = function worklog(argv) {
   };
 
   var logMessage = function(callback){
-    fs.appendFile(fullPath, data + '\n', function (err) {
+    fs.appendFile(fullPath, data + linefeed, function (err) {
       if (err) throw err;
       console.info(message);
       callback(null, 'two');
