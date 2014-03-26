@@ -3,20 +3,21 @@ var path = require('path');
 var fs = require('fs');
 var moment = require('moment');
 var home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
-var dir = path.join(home, 'Dropbox', 'worklog');
 var chalk = require('chalk');
 var linefeed = require('os').EOL;
 
 module.exports = function worklog(argv) {
   var today = moment().format('YYYY-MM-DD');
   var fileName = argv._[0] ? argv._[0] + '.txt' : today + '.txt';
+  var storageDir = argv.d ? argv.d : 'Dropbox';
+  var dir = path.join(home, storageDir, 'worklog');
   var fullPath = path.join(dir, fileName);
   var time = argv.t ? argv.t : moment().format('HH:mm:ss');
   var data = time + ' - ' + argv.m;
   var message = chalk.blue('The work log message ') +
     chalk.green('"' + data + '"') + linefeed +
     chalk.blue('was appended to ') +
-    chalk.magenta(path.join('~','Dropbox', 'worklog', fileName));
+    chalk.magenta(fullPath);
 
   var checkDir = function(callback){
     fs.exists(dir, function (exists) {

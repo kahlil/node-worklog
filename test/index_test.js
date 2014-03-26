@@ -24,15 +24,24 @@ var path = require('path');
     test.ifError(value)
 */
 
+
+var generatedFile;
+var home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
+
 exports.worklog = {
   setUp: function(done) {
     // setup here
     done();
   },
+  tearDown: function(done) {
+    // Delete the generated file.
+    grunt.file.delete(generatedFile, { force: true });
+    done();
+  },
   logwork: function(test) {
     var actual, expected;
-    var dir = path.join(process.env['HOME'], 'Dropbox', 'worklog');
-    var generatedFile = path.join(dir, 'test.txt');
+    var dir = path.join(home, 'Dropbox', 'worklog');
+    generatedFile = path.join(dir, 'test.txt');
 
     test.expect(1);
 
@@ -53,8 +62,37 @@ exports.worklog = {
       expected = grunt.file.read('test/expected/test.txt');
       // Test if the two files have the same content.
       test.equal(actual, expected, 'should generate the correct file.');
-      // Delete the generated file.
-      grunt.file.delete(generatedFile, { force: true });
+
+      test.done();
+    });
+  },
+
+  logworkGoogleDrive: function(test) {
+    var actual, expected;
+    var dir = path.join(home, 'Google Drive', 'worklog');
+    generatedFile = path.join(dir, 'test.txt');
+
+    test.expect(1);
+
+    grunt.util.spawn({
+      cmd: 'worklog',
+      args: [
+        'test',
+        '-d',
+        'Google Drive',
+        '-m',
+        'some work',
+        '-t',
+        '14:00:00'
+      ]
+    },
+    function() {
+      // Read the generated file.
+      actual = grunt.file.read(generatedFile);
+      // Read the reference file.
+      expected = grunt.file.read('test/expected/test.txt');
+      // Test if the two files have the same content.
+      test.equal(actual, expected, 'should generate the correct file.');
 
       test.done();
     });
