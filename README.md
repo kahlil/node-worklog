@@ -6,10 +6,22 @@ A tiny Node program that lets you log work to files in `~/Dropbox/worklog` via t
 worklog [<custom filename>] -m <a message to be logged> [-t <a custom timestamp>]
 ```
 
-Per default the filename of the file the message is logged to is the current date in the following format: `YYYY-MM-DD.txt`.  
+Per default the filename of the file the message is logged to is the current date in the following format: `YYYY-MM-DD.txt`.
 To use a custom filename pass the name as the first parameter.
 
 Per default the message logged is prefixed with a timestamp. If you want to customize the timestamp pass your timestamp of choice with the `-t` flag.
+
+Per default worklogs are stored in `Dropbox` folder. With a `-d` flag it is possible to specify an alternative directory:
+
+```sh
+worklog -m 'some stuff I did today' -d 'Google Drive'
+```
+
+Add this alias to avoid typing `-d` flag every time:
+
+```sh
+alias worklog='worklog -d "Google Drive" '
+```
 
 ## Getting Started
 Install the module with: `npm install -g worklog`
@@ -33,9 +45,9 @@ The contents of a worklog file could look like this:
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-v0.1.6: Small changes.
-v0.1.4: Added tests and did some light refactoring.
-v0.1.0: Initial release.
+* v0.1.6: Small changes.
+* v0.1.4: Added tests and did some light refactoring.
+* v0.1.0: Initial release.
 
 ## License
 Copyright (c) 2014 Kahlil Lechelt. Licensed under the MIT license.
