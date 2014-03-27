@@ -14,7 +14,7 @@ module.exports = function worklog(argv) {
   var fullPath = path.join(dir, fileName);
   var time = argv.t ? argv.t : moment().format('HH:mm:ss');
   var data = time + ' - ' + argv.m;
-  var message = chalk.blue('The work log message ') +
+  var message = linefeed + chalk.blue('The work log message ') +
     chalk.green('"' + data + '"') + linefeed +
     chalk.blue('was appended to ') +
     chalk.magenta(fullPath);
