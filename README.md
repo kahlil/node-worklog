@@ -41,6 +41,10 @@ The contents of a worklog file could look like this:
 16:31:03 - hangin'
 ```
 
+## Fancy Badge
+
+<a href="https://nodei.co/npm/worklog/"><img src="https://nodei.co/npm/worklog.png"></a>
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
