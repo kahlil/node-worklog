@@ -1,5 +1,7 @@
 # worklog
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/kahlil/node-worklog.svg)](https://greenkeeper.io/)
+
 A tiny Node program that lets you log work to files in `~/Dropbox/worklog` via the terminal.
 
 ```sh
